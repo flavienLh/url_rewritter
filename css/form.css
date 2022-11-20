@@ -1,0 +1,78 @@
+/* form */
+form:has(> .field) {
+    display: grid;
+    place-items: center;
+    grid-gap: 1em;
+} form .field {
+    position: relative;
+    font-weight: 600;
+    margin-top: 1em;
+}
+
+/* input */
+form input {
+    background-color: var(--dark-t);
+    border: solid 0.1em;
+    border-radius: 0.4em;
+    font-size: 1em;
+    color: inherit;
+    padding: 10px;
+    outline: none;
+    width: 100%;
+}
+
+/* label */
+form .field-label {
+    position: absolute;
+    bottom: 25%;
+    left: calc(0.1em + 10px); /*input border + padding*/
+    user-select: none;
+    pointer-events: none;
+    transition: 250ms;
+} form .field:is(:has(input:focus), :not(:has(:placeholder-shown))) .field-label {
+    bottom: calc(100% + 5px);
+    left: 0;
+    font-size: 0.8em;
+} form .field:has(:placeholder-shown:not(:focus)) .field-label {
+    color: var(--text-disabled);
+}
+
+/* button */
+button {
+    border: none;
+    width: 10em;
+    height: 3em;
+    border-radius: 1.5em;
+    color: var(--text);
+    font-size: 1em;
+    background: var(--dark-t);
+    box-shadow: 0 15px 35px #0002, 0 5px 15px #000a;
+    border-top: 1px solid var(--light-t);
+    border-bottom: 1px solid var(--light-t);
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: letter-spacing 500ms;
+    user-select: none;
+} button:hover {
+    letter-spacing: 0.25em;
+}
+
+/* error message */
+.error-message {
+    border: solid 1px var(--error);
+    color: var(--error);
+    padding: 0.5em;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5em;
+} #cbo-error-message {
+    display: none;
+} .error-message svg {
+    width: 0.75em;
+    fill: var(--error);
+    cursor: pointer;
+} .error-message:has(input:checked) {
+    display: none;
+}
